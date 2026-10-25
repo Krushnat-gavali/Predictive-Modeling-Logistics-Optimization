@@ -1,169 +1,189 @@
 # Predictive Modeling and Optimization in Logistics Systems Using Python
 
-## Project Overview
+A Python-based machine learning project for food-delivery time prediction, exploratory data analysis, feature engineering, hyperparameter tuning, and scenario-based logistics optimization.
 
-This project applies data analysis, feature engineering, machine learning, and scenario-based optimization to food-delivery time prediction. It uses a real-world-style delivery dataset to investigate how delivery characteristics relate to the time taken to complete an order.
+## 1. Project Overview
 
-The project follows a modular Python workflow that includes data preprocessing, exploratory data analysis, geographic feature engineering, regression model development, hyperparameter tuning, model evaluation, and optimization scenario analysis.
+Delivery time is an important performance indicator in logistics. Understanding the factors associated with delivery duration can help analysts investigate delivery patterns and evaluate potential operational improvements.
 
-A Random Forest regression model is trained to estimate delivery duration in minutes. Its performance is compared with a simple baseline and a Linear Regression model. Hyperparameter tuning is then used to investigate whether the Random Forest model can achieve better predictive performance.
+This project implements a modular Python workflow to analyze a food-delivery dataset and predict delivery duration in minutes. The workflow includes data preprocessing, exploratory data analysis (EDA), geographic feature engineering, regression modeling, hyperparameter tuning, model evaluation, visualization, and optimization scenario analysis.
 
-The project also examines hypothetical delivery-distance reduction scenarios to understand how changing this model input affects predicted delivery time. These scenarios are analytical experiments, not guaranteed operational improvements.
+Three regression approaches are compared: a mean-prediction baseline, Linear Regression, and Random Forest Regression. The Random Forest model is subsequently tuned using cross-validation to investigate whether its predictive performance can be improved.
 
-## Project Objectives
+The project also examines hypothetical delivery-distance reduction scenarios to understand how changes to an input feature affect model predictions. These scenarios are analytical experiments, not guarantees of real-world operational improvements.
+
+## 2. Project Objectives
 
 The main objectives are to:
 
-* Prepare the delivery dataset for machine learning.
+* Prepare the dataset for analysis and machine learning.
 * Identify missing values, unusual observations, and data-quality issues.
-* Explore delivery-time distributions and relationships among available variables.
-* Calculate approximate geographic distance using delivery coordinates.
+* Explore delivery-time distributions and relationships between available variables.
+* Calculate approximate geographic distance from restaurant and delivery coordinates.
 * Develop and compare regression models for delivery-time prediction.
 * Tune Random Forest hyperparameters using cross-validation.
-* Evaluate models using standard regression metrics.
-* Investigate hypothetical distance-reduction scenarios.
-* Generate charts, evaluation tables, and machine-readable summaries.
-* Organize the project into reusable and maintainable Python modules.
+* Evaluate predictive performance using standard regression metrics.
+* Investigate hypothetical delivery-distance reduction scenarios.
+* Generate visualizations, evaluation tables, and structured reports.
+* Organize the implementation into reusable Python modules.
 
-## Dataset
+## 3. Dataset
 
-### Source
+### 3.1 Dataset Source
 
 The project uses a food-delivery dataset obtained from Kaggle.
 
-**Local raw dataset path:**
+**Raw dataset path:** `data/raw/deliverytime.csv`
 
-`data/raw/deliverytime.csv`
+### 3.2 Dataset Information
 
-### Dataset Information
+| Property                   | Description           |
+| -------------------------- | --------------------- |
+| Number of records          | 45,593                |
+| Number of original columns | 11                    |
+| Prediction target          | `Time_taken(min)`     |
+| Machine learning task      | Supervised regression |
+| Target unit                | Minutes               |
 
-* **Number of records:** 45,593
-* **Original columns:** 11
-* **Prediction target:** `Time_taken(min)`
-* **Problem type:** Supervised regression
-* **Target unit:** Minutes
+### 3.3 Original Dataset Columns
 
-### Original Dataset Columns
+| Column                        | Description                                        |
+| ----------------------------- | -------------------------------------------------- |
+| `ID`                          | Order record identifier                            |
+| `Delivery_person_ID`          | Delivery-person identifier                         |
+| `Delivery_person_Age`         | Recorded age of the delivery person                |
+| `Delivery_person_Ratings`     | Recorded delivery-person rating                    |
+| `Restaurant_latitude`         | Restaurant latitude                                |
+| `Restaurant_longitude`        | Restaurant longitude                               |
+| `Delivery_location_latitude`  | Delivery destination latitude                      |
+| `Delivery_location_longitude` | Delivery destination longitude                     |
+| `Type_of_order`               | Order category                                     |
+| `Type_of_vehicle`             | Vehicle category                                   |
+| `Time_taken(min)`             | Delivery duration in minutes and prediction target |
 
-| Column                        | Description                                     |
-| ----------------------------- | ----------------------------------------------- |
-| `ID`                          | Order record identifier                         |
-| `Delivery_person_ID`          | Delivery-person identifier                      |
-| `Delivery_person_Age`         | Recorded age of the delivery person             |
-| `Delivery_person_Ratings`     | Recorded delivery-person rating                 |
-| `Restaurant_latitude`         | Restaurant latitude                             |
-| `Restaurant_longitude`        | Restaurant longitude                            |
-| `Delivery_location_latitude`  | Delivery destination latitude                   |
-| `Delivery_location_longitude` | Delivery destination longitude                  |
-| `Type_of_order`               | Order category                                  |
-| `Type_of_vehicle`             | Vehicle category                                |
-| `Time_taken(min)`             | Delivery duration in minutes; prediction target |
+The preprocessing and feature-engineering stages prepare the dataset and add derived information, including geographic-validity indicators and `delivery_distance_km`.
 
-The preprocessing and feature-engineering stages add derived fields, including geographic-validity indicators and `delivery_distance_km`.
+### 3.4 Geographic Distance Calculation
 
-### Geographic Distance
-
-The project calculates an approximate straight-line distance between the restaurant and delivery coordinates using the Haversine formula.
+The project uses the Haversine formula to calculate the approximate straight-line distance between restaurant and delivery coordinates.
 
 This measurement represents geographic distance rather than actual road distance. It does not account for road networks, traffic congestion, route restrictions, or navigation choices.
 
-### Data Limitations
+### 3.5 Dataset Limitations
 
-The supplied dataset does not directly include all operational factors that may influence delivery duration. In particular, it does not provide dedicated measurements for traffic conditions, weather conditions, kitchen preparation time, shipment weight, dispatch delay, or shipping cost.
+The dataset does not directly provide dedicated measurements for every factor that may affect delivery duration. Examples of unavailable operational measurements include traffic conditions, weather conditions, kitchen preparation time, shipment weight, dispatch delay, and shipping cost.
 
-Consequently, the project does not claim to measure these unavailable factors or establish their effects on delivery time.
+Consequently, the project does not claim to measure the effects of these unavailable variables. Predictions and optimization scenarios are limited to the information represented by the dataset and its engineered features.
 
-## Technologies Used
+## 4. Technologies Used
 
-* **Python** — Main programming language
-* **Pandas** — Data manipulation and analysis
-* **NumPy** — Numerical calculations
-* **Scikit-learn** — Machine learning, model evaluation, and hyperparameter tuning
-* **Matplotlib** — Data visualization
-* **Seaborn** — Statistical visualizations
-* **Joblib** — Saving and loading trained models
-* **JSON and CSV** — Structured summaries and result storage
-* **Git and GitHub** — Version control and project sharing
+| Technology     | Purpose                                                        |
+| -------------- | -------------------------------------------------------------- |
+| Python         | Main programming language                                      |
+| Pandas         | Data manipulation and analysis                                 |
+| NumPy          | Numerical calculations                                         |
+| Scikit-learn   | Regression models, model evaluation, and hyperparameter tuning |
+| Matplotlib     | Data visualization                                             |
+| Seaborn        | Statistical visualizations                                     |
+| Joblib         | Saving and loading trained models                              |
+| JSON and CSV   | Storing structured results and summaries                       |
+| Git and GitHub | Version control and project sharing                            |
 
-## Project Structure
+## 5. Project Structure
+
+The project is organized into separate directories for datasets, trained models, generated outputs, and Python source code.
 
 ```text
 Predictive_Logistics_Optimization/
-│
-├── data/
-│   ├── raw/
-│   │   └── deliverytime.csv
-│   └── processed/
-│       ├── cleaned_delivery_data.csv
-│       └── feature_engineered_delivery_data.csv
-│
-├── models/
-│   ├── best_delivery_time_model.joblib
-│   └── tuned_random_forest_delivery_model.joblib
-│
-├── outputs/
-│   ├── evaluation/
-│   ├── figures/
-│   └── optimization/
-│
-├── src/
-│   ├── __init__.py
-│   ├── data_preprocessing.py
-│   ├── exploratory_analysis.py
-│   ├── feature_engineering.py
-│   ├── train_models.py
-│   ├── hyperparameter_tuning.py
-│   ├── optimization_analysis.py
-│   └── visualize_delivery_data.py
-│
-├── report/
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
+|
+|-- data/
+|   |-- raw/
+|   |   `-- deliverytime.csv
+|   `-- processed/
+|       |-- cleaned_delivery_data.csv
+|       `-- feature_engineered_delivery_data.csv
+|
+|-- models/
+|   |-- best_delivery_time_model.joblib
+|   |-- dummy_regressor_mean_baseline_pipeline.joblib
+|   |-- linear_regression_pipeline.joblib
+|   |-- random_forest_regressor_pipeline.joblib
+|   `-- tuned_random_forest_delivery_model.joblib
+|
+|-- outputs/
+|   |-- evaluation/
+|   |-- figures/
+|   `-- optimization/
+|
+|-- src/
+|   |-- data_preprocessing.py
+|   |-- exploratory_analysis.py
+|   |-- feature_engineering.py
+|   |-- train_models.py
+|   |-- hyperparameter_tuning.py
+|   |-- optimization_analysis.py
+|   |-- visualize_delivery_data.py
+|   `-- __init__.py
+|
+|-- .gitignore
+|-- README.md
+`-- requirements.txt
 ```
 
-*Note: The structure above illustrates the main project files and output locations. Some output files may be added as the workflow runs. The `report/` directory is reserved for the final project report.*
+### Directory Descriptions
 
-## Installation and Setup
+* **`data/raw/`** — Contains the original dataset.
+* **`data/processed/`** — Contains cleaned and feature-engineered datasets.
+* **`models/`** — Contains saved machine-learning model artifacts.
+* **`outputs/evaluation/`** — Contains data-quality summaries, EDA reports, model evaluations, predictions, and tuning results.
+* **`outputs/figures/`** — Contains generated exploratory-analysis visualizations.
+* **`outputs/optimization/`** — Contains optimization summaries, sensitivity results, recommendations, and related visualizations.
+* **`src/`** — Contains the Python scripts that implement the project workflow.
+* **`requirements.txt`** — Lists the Python package dependencies.
+* **`README.md`** — Documents the project, setup, execution, results, and limitations.
 
-### 1. Install Python
+## 6. Installation and Setup
 
-Install a compatible Python version and verify that the Python launcher is available.
+### 6.1 Prerequisites
 
-Open PowerShell or the VS Code terminal and run:
+Before running the project, ensure that you have:
 
-```powershell
-py --version
-```
+* Python installed on your computer.
+* Visual Studio Code or another Python-compatible editor.
+* Windows PowerShell or another terminal.
+* The project dataset at `data/raw/deliverytime.csv`.
 
-### 2. Open the Project Directory
+### 6.2 Open the Project Directory
+
+Open PowerShell and navigate to the project root:
 
 ```powershell
 cd C:\Predictive_Logistics_Optimization
 ```
 
-### 3. Install Dependencies
+Run the following command to verify the current directory:
+
+```powershell
+Get-Location
+```
+
+### 6.3 Install Dependencies
+
+The project dependencies are listed in `requirements.txt`.
+
+Install the required packages using:
 
 ```powershell
 py -m pip install -r requirements.txt
 ```
 
-The dependencies are listed in `requirements.txt`.
+The requirements include NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn, Joblib, and Python-Docx.
 
-### 4. Check the Dataset
+If your computer uses a different Python launcher, use the command configured for your installation.
 
-Confirm that the raw CSV file exists at:
+## 7. Running the Project
 
-```text
-data/raw/deliverytime.csv
-```
-
-The preprocessing stage must be able to read this file before the remaining workflow can run.
-
-## Execution Workflow
-
-Run the project modules from the project root directory in the following order.
+Run the Python scripts from the project root directory in the following order. Allow each stage to finish successfully before starting the next one.
 
 ### Step 1: Data Preprocessing
 
@@ -171,12 +191,7 @@ Run the project modules from the project root directory in the following order.
 py src\data_preprocessing.py
 ```
 
-This stage prepares the raw dataset, checks data quality, handles applicable missing or invalid values, and creates a cleaned dataset.
-
-Expected main outputs include:
-
-* `data/processed/cleaned_delivery_data.csv`
-* `outputs/evaluation/data_quality_summary.json`
+This stage prepares the raw dataset for further analysis and saves the cleaned dataset under `data/processed/`.
 
 ### Step 2: Exploratory Data Analysis
 
@@ -184,9 +199,7 @@ Expected main outputs include:
 py src\exploratory_analysis.py
 ```
 
-This stage summarizes the dataset, examines missing values and numerical distributions, and identifies potential outliers and unusual observations.
-
-It generates CSV summaries and a text report under `outputs/`.
+This stage generates descriptive statistics, data-quality summaries, correlation information, and exploratory-analysis reports under `outputs/evaluation/`.
 
 ### Step 3: Feature Engineering
 
@@ -194,21 +207,15 @@ It generates CSV summaries and a text report under `outputs/`.
 py src\feature_engineering.py
 ```
 
-This stage prepares model features, including the approximate geographic delivery distance, and transforms categorical variables into a format suitable for regression models.
+This stage creates engineered features, including approximate geographic delivery distance, and saves the resulting dataset under `data/processed/`.
 
-Expected main output:
-
-`data/processed/feature_engineered_delivery_data.csv`
-
-### Step 4: Train and Compare Models
+### Step 4: Model Training and Comparison
 
 ```powershell
 py src\train_models.py
 ```
 
-This stage trains and evaluates the baseline, Linear Regression, and Random Forest models.
-
-The comparison results and prediction outputs are saved under `outputs/evaluation/`. The trained model artifacts are saved under `models/`.
+This stage trains the baseline and regression models, evaluates their predictions, and saves model artifacts and evaluation results.
 
 ### Step 5: Hyperparameter Tuning
 
@@ -216,88 +223,98 @@ The comparison results and prediction outputs are saved under `outputs/evaluatio
 py src\hyperparameter_tuning.py
 ```
 
-This stage evaluates selected Random Forest configurations using cross-validation and records the best configuration found during the search.
+This stage evaluates candidate Random Forest hyperparameter configurations using cross-validation and records the tuning results and selected parameters.
 
-Expected outputs include tuning results, best hyperparameters, tuned-model predictions, and a saved tuned model.
-
-### Step 6: Optimization Scenario Analysis
+### Step 6: Optimization Analysis
 
 ```powershell
 py src\optimization_analysis.py
 ```
 
-This stage evaluates hypothetical changes to delivery distance and examines their effect on model predictions.
+This stage evaluates hypothetical feature-change scenarios and generates sensitivity summaries, scenario results, and optimization recommendations.
 
-It generates scenario summaries, feature-sensitivity results, charts, and recommendations under `outputs/optimization/`.
-
-### Step 7: Generate Visualizations
+### Step 7: Visualization
 
 ```powershell
 py src\visualize_delivery_data.py
 ```
 
-This stage generates charts illustrating delivery-time distributions, delivery time by vehicle and order type, geographic distance, relationships between distance and delivery time, and numerical correlations.
+This stage generates charts illustrating delivery-time distributions, delivery characteristics, geographic distance, and relationships among the available variables.
 
-The figures are saved under `outputs/figures/`.
+The resulting figures are saved under `outputs/figures/`.
 
-**Important:** Run the scripts in the listed order when starting from the raw dataset. Each downstream stage depends on outputs created by earlier stages. If a script reports an error, resolve it before proceeding.
+**Execution note:** The stages are listed in the intended workflow order. Later stages may depend on datasets or models created by earlier stages. If a script reports an error, resolve it before continuing.
 
-## Model Development
+## 8. Machine Learning Methodology
 
-The project compares three regression approaches.
+### 8.1 Prediction Target
 
-### 1. Dummy Regression Baseline
+The target variable is `Time_taken(min)`, representing delivery duration in minutes.
 
-The baseline provides a simple reference prediction against which more sophisticated models can be compared.
+The project treats delivery-time prediction as a supervised regression problem.
 
-### 2. Linear Regression
+### 8.2 Models Evaluated
 
-Linear Regression provides a relatively simple model for examining relationships between the available input features and delivery duration.
+#### Mean-Prediction Baseline
 
-### 3. Random Forest Regression
+A `DummyRegressor` provides a simple reference point against which the more sophisticated regression models can be compared.
 
-Random Forest combines predictions from multiple decision trees. It can model nonlinear relationships and interactions that a basic linear model may not capture.
+#### Linear Regression
 
-### Hyperparameter Tuning
+Linear Regression provides a relatively simple model for estimating relationships between the input features and delivery duration.
 
-The tuning stage searches selected Random Forest configurations using cross-validation. The best configuration is selected according to the search's evaluation criterion and then evaluated on a test set.
+#### Random Forest Regression
 
-## Evaluation Metrics
+Random Forest Regression combines predictions from multiple decision trees and can represent nonlinear relationships between input features and delivery duration.
 
-The project uses the following metrics.
+#### Tuned Random Forest Regression
 
-| Metric | Meaning                                                                                 | Preferred Direction |
-| ------ | --------------------------------------------------------------------------------------- | ------------------- |
-| MAE    | Mean Absolute Error; average absolute prediction error in minutes                       | Lower               |
-| RMSE   | Root Mean Squared Error; penalizes larger errors more strongly                          | Lower               |
-| R²     | Measures how much target variation is explained relative to a mean-prediction reference | Higher              |
+Hyperparameter tuning evaluates alternative Random Forest configurations through cross-validation. The selected configuration is then evaluated on the test data.
 
-MAE and RMSE are expressed in minutes because the target is delivery duration. R² is a dimensionless score and can be negative when a model performs worse than the relevant mean-prediction reference.
+### 8.3 Evaluation Metrics
 
-## Initial Model Results
+The project uses three standard regression metrics.
 
-The initial model-comparison run produced the following results.
+**Mean Absolute Error (MAE)**
 
-| Model             | MAE (minutes) | RMSE (minutes) |                   R² |
-| ----------------- | ------------: | -------------: | -------------------: |
-| Dummy baseline    |        7.5790 |         9.3637 | Approximately 0.0000 |
-| Linear Regression |        6.3559 |         8.0513 |               0.2607 |
-| Random Forest     |        5.8585 |         7.4693 |               0.3637 |
+MAE measures the average absolute difference between actual and predicted delivery times. Lower values indicate smaller average absolute errors.
 
-In this run, Random Forest achieved the lowest MAE and RMSE and the highest R² among the three initial models.
+**Root Mean Squared Error (RMSE)**
 
-### Tuned Random Forest Results
+RMSE measures prediction error while assigning greater weight to larger errors. Lower values indicate better performance under this metric.
 
-The hyperparameter-tuning stage reported:
+**Coefficient of Determination (R²)**
 
-* **Best cross-validation RMSE:** 7.3209 minutes
-* **Test MAE:** 5.7337 minutes
-* **Test RMSE:** 7.2987 minutes
-* **Test R²:** 0.3924
+R² compares model predictions with a mean-prediction reference and indicates how well the model accounts for variation in the target. Higher values generally indicate better performance.
 
-The tuning process selected the following configuration:
+MAE and RMSE are expressed in minutes when the target is measured in minutes.
 
-| Parameter           | Selected Value |
+## 9. Recorded Model Results
+
+The following values are the results previously recorded during the project's model-training and hyperparameter-tuning workflow.
+
+| Model                          | MAE (minutes) | RMSE (minutes) |                   R² |
+| ------------------------------ | ------------: | -------------: | -------------------: |
+| Mean baseline                  |        7.5790 |         9.3637 | Approximately 0.0000 |
+| Linear Regression              |        6.3559 |         8.0513 |               0.2607 |
+| Random Forest Regression       |        5.8585 |         7.4693 |               0.3637 |
+| Tuned Random Forest Regression |        5.7337 |         7.2987 |               0.3924 |
+
+### Results Interpretation
+
+Among these four recorded results, the tuned Random Forest model achieved the lowest MAE and RMSE and the highest R².
+
+Its recorded test MAE of approximately 5.73 minutes means that the average absolute prediction error on that evaluation set was about 5.73 minutes. This is an average, not a guarantee for any individual delivery.
+
+The tuned model's R² of 0.3924 indicates that substantial variation in delivery duration remains unexplained. Its predictions should therefore be treated as estimates rather than exact delivery guarantees.
+
+Model results can change if the dataset, preprocessing, features, train-test split, random seeds, or training configuration changes. The evaluation files under `outputs/evaluation/` provide supporting project records.
+
+## 10. Hyperparameter Tuning
+
+The recorded tuned Random Forest configuration is:
+
+| Hyperparameter      | Selected value |
 | ------------------- | -------------- |
 | `n_estimators`      | 200            |
 | `min_samples_split` | 6              |
@@ -305,59 +322,58 @@ The tuning process selected the following configuration:
 | `max_features`      | `sqrt`         |
 | `max_depth`         | 10             |
 
-These values describe the recorded project runs. Results may vary if the dataset, software environment, preprocessing logic, random seeds, or evaluation setup changes.
+The recorded best cross-validation RMSE was approximately 7.3209 minutes.
 
-The initial and tuned results should not be treated as a perfectly controlled comparison unless both models are evaluated using the same test records and evaluation pipeline.
+The tuned model's recorded test RMSE was approximately 7.2987 minutes. Cross-validation and test-set results represent different evaluation procedures and should be interpreted separately.
 
-## Optimization Scenario Analysis
+These values represent the best configuration among the configurations evaluated by this project's tuning process. They are not necessarily globally optimal.
 
-The optimization module examines hypothetical reductions in delivery distance by changing the distance feature and comparing model predictions.
+## 11. Optimization and Sensitivity Analysis
 
-The recorded scenario analysis reported these average predicted changes:
+The optimization component investigates how hypothetical reductions in the engineered delivery-distance feature affect predicted delivery time.
 
-| Hypothetical Distance Reduction | Average Predicted Delivery-Time Change |
-| ------------------------------- | -------------------------------------: |
-| 5%                              |           Approximately −0.244 minutes |
-| 10%                             |           Approximately −0.452 minutes |
-| 15%                             |           Approximately −0.601 minutes |
+The previously recorded scenario results were approximately:
 
-These are model-based scenario results, not measured improvements from real delivery operations. For example, a predicted change of −0.601 minutes is approximately 36 seconds.
+| Hypothetical distance reduction | Change in predicted delivery time |
+| ------------------------------- | --------------------------------: |
+| 5%                              |               0.244 minutes lower |
+| 10%                             |               0.452 minutes lower |
+| 15%                             |               0.601 minutes lower |
 
-The analysis assumes that the model's predictions remain informative under the hypothetical feature changes. It does not demonstrate that a delivery company can achieve those distance reductions or that actual delivery times will improve by the predicted amounts.
+For the 15% scenario, the predicted reduction is approximately 36 seconds.
 
-The dataset contains straight-line geographic distance rather than actual route distance. Therefore, the scenario analysis should be interpreted as an exploratory sensitivity study, not a production route-optimization system.
+These values describe model sensitivity under the scenarios evaluated. They are not measured operational savings and do not prove that reducing actual delivery routes by the same percentage will reduce delivery time by the predicted amount.
 
-## Output Files
+The calculated feature is straight-line geographic distance rather than actual road distance. Real-world outcomes may also depend on traffic, road networks, restaurant preparation, rider availability, weather, and other factors not directly represented in the dataset.
 
-### Data Quality and Analysis
+The optimization findings should therefore be treated as exploratory estimates that can inform further investigation, not as causal conclusions or guaranteed improvements.
 
-The `outputs/` directory contains generated analytical summaries, including:
+## 12. Generated Outputs
 
-* Dataset overview and column information
-* Missing-value summaries
-* Numerical and categorical summaries
-* Correlation summaries
-* Outlier and domain-anomaly summaries
-* Data-quality checks
-* Exploratory analysis report
+The project generates evaluation files, visualizations, model artifacts, and optimization results.
 
-### Model Evaluation
+### 12.1 Evaluation Outputs
 
-The `outputs/evaluation/` directory includes generated files such as:
+The `outputs/evaluation/` directory contains dataset summaries, data-quality reports, exploratory-analysis results, model comparisons, prediction records, and hyperparameter-tuning results.
 
-* `model_comparison.csv`
-* `model_predictions.csv`
-* `model_training_summary.json`
-* `hyperparameter_tuning_results.csv`
-* `best_hyperparameters.json`
-* `tuned_model_predictions.csv`
-* `hyperparameter_tuning_summary.json`
+Important files include:
 
-The exact files present depend on which scripts have been run successfully.
+```text
+outputs/evaluation/dataset_overview.csv
+outputs/evaluation/data_quality_summary.json
+outputs/evaluation/eda_report.txt
+outputs/evaluation/model_comparison.csv
+outputs/evaluation/model_predictions.csv
+outputs/evaluation/best_hyperparameters.json
+outputs/evaluation/hyperparameter_tuning_results.csv
+outputs/evaluation/tuned_model_predictions.csv
+```
 
-### Figures
+Additional files provide missing-value summaries, numerical and categorical summaries, correlation information, outlier summaries, feature-engineering details, and execution logs.
 
-The `outputs/figures/` directory contains nine visualizations:
+### 12.2 Visualization Outputs
+
+The `outputs/figures/` directory contains nine charts:
 
 1. `01_delivery_time_distribution.png`
 2. `02_delivery_time_boxplot.png`
@@ -369,63 +385,75 @@ The `outputs/figures/` directory contains nine visualizations:
 8. `08_mean_delivery_time_by_order_type.png`
 9. `09_correlation_heatmap.png`
 
-### Optimization Results
+These charts support the investigation of delivery-time distributions, vehicle and order categories, geographic distance, and relationships among numerical variables.
 
-The `outputs/optimization/` directory contains scenario-analysis results, feature-sensitivity outputs, charts, logs, and written recommendations.
+### 12.3 Optimization Outputs
 
-## Reproducibility
+The `outputs/optimization/` directory contains:
 
-For consistent execution:
+```text
+feature_sensitivity_analysis.csv
+feature_sensitivity_analysis.png
+optimization_analysis.log
+optimization_analysis_summary.json
+optimization_recommendations.txt
+optimization_scenario_summary.csv
+predicted_delivery_time_scenarios.png
+```
 
-1. Keep the original dataset at the documented path.
-2. Install dependencies from `requirements.txt`.
-3. Run the scripts from the project root.
-4. Execute the workflow in the documented order.
-5. Preserve the generated evaluation results when comparing model runs.
-6. Check the logs and summaries for errors or changes in output.
+These files document the evaluated scenarios, sensitivity results, recommendations, and related visualizations.
 
-The reported metrics correspond to the completed runs described in this README. Re-running the workflow may produce different results if relevant settings or dependencies have changed.
+## 13. Saved Models
 
-## Limitations
+The `models/` directory contains the saved machine-learning artifacts:
 
-The project has several important limitations:
+* `best_delivery_time_model.joblib`
+* `dummy_regressor_mean_baseline_pipeline.joblib`
+* `linear_regression_pipeline.joblib`
+* `random_forest_regressor_pipeline.joblib`
+* `tuned_random_forest_delivery_model.joblib`
 
-* It depends on the quality and representativeness of the supplied dataset.
-* Some observations contain missing values or questionable geographic coordinates.
-* Straight-line distance does not represent real road distance.
-* Available features do not capture every factor affecting delivery duration.
-* Predictive associations do not establish causation.
-* Hyperparameter-tuning results depend on the search space and evaluation design.
-* Hypothetical scenario predictions are not proof of real-world operational improvements.
-* The model has not been established as a production-ready real-time delivery service.
+These files store trained model objects or pipelines so they can be loaded without repeating the entire training process, provided that the loading code uses the correct artifact and compatible dependencies.
 
-These limitations should be considered when interpreting the findings.
+**Security note:** Only load serialized model files from trusted sources. Joblib files should not be treated as safe files when obtained from unknown origins.
 
-## Future Improvements
+## 14. Limitations and Responsible Interpretation
 
-Potential extensions include:
+The project is an analytical and educational machine-learning implementation. Its results should be interpreted with the following limitations in mind:
 
-* Testing additional regression algorithms and stronger validation strategies.
-* Evaluating models on consistently defined training, validation, and test sets.
-* Improving geographic data validation and distance calculations.
-* Incorporating licensed road-network distance and travel-time data.
-* Adding reliable traffic, weather, preparation-time, and dispatch-time information where available.
-* Performing error analysis across different delivery types and distance ranges.
-* Comparing predictions against new, independently collected observations.
-* Developing a deployment interface only after further testing and validation.
+1. **Dataset coverage:** The dataset does not contain every operational variable that can affect delivery duration.
+2. **Geographic distance:** The Haversine distance is a straight-line estimate, not the distance travelled on roads.
+3. **Prediction uncertainty:** A model prediction is an estimate and may differ from actual delivery time.
+4. **Model performance:** The recorded R² indicates that substantial variation in delivery duration remains unexplained.
+5. **Scenario assumptions:** The optimization analysis changes model inputs hypothetically and does not establish causality.
+6. **Generalization:** Performance on other cities, delivery systems, time periods, or datasets may differ.
+7. **Data quality:** Results depend on the quality and representativeness of the supplied data and the preprocessing workflow.
 
-## Conclusion
+For operational use, the model would require further validation on representative, current delivery data and monitoring of prediction accuracy over time.
 
-This project demonstrates a modular machine-learning workflow for food-delivery duration prediction. It combines data-quality assessment, exploratory analysis, geographic feature engineering, regression-model comparison, hyperparameter tuning, visualization, and hypothetical scenario analysis.
+## 15. Future Improvements
 
-In the recorded runs, Random Forest outperformed the initial baseline and Linear Regression models according to MAE, RMSE, and R². The tuned model also produced promising evaluation results on its recorded test set. However, the findings remain dependent on the dataset and evaluation design, and the optimization scenarios should be treated as exploratory model-based estimates rather than guaranteed operational outcomes.
+Possible future extensions include:
 
-The project provides a foundation for further experimentation in predictive analytics and logistics decision support.
+* Integrating actual road-network distances and route information.
+* Incorporating reliable traffic and weather measurements.
+* Adding restaurant preparation and dispatch-time data where available.
+* Testing additional regression algorithms and feature-selection methods.
+* Evaluating performance across different locations and time periods.
+* Improving model interpretability and uncertainty assessment.
+* Validating proposed optimization scenarios against real operational outcomes.
+* Developing a simple interface for entering delivery information and viewing predictions.
 
----
+These are possible future enhancements, not features claimed to be implemented in the current project.
 
-**Project:** Predictive Modeling and Optimization in Logistics Systems Using Python
-**Program:** YuvaIntern — Week 4
-**Language:** Python
-**Problem Type:** Regression
-**Target Variable:** `Time_taken(min)`
+## 16. Conclusion
+
+This project demonstrates a modular workflow for analyzing delivery data and building machine-learning models to estimate food-delivery duration.
+
+It combines data preprocessing, exploratory analysis, geographic feature engineering, regression-model comparison, Random Forest hyperparameter tuning, visualization, and scenario-based sensitivity analysis.
+
+Among the recorded experiments, the tuned Random Forest model achieved the best reported test metrics, with an MAE of approximately 5.73 minutes, an RMSE of approximately 7.30 minutes, and an R² of 0.3924.
+
+The optimization component demonstrates how predictive models can be used to explore hypothetical changes to input features. However, these scenarios do not establish causal effects or guarantee real-world savings.
+
+Overall, the project provides a practical foundation for further work in logistics analytics, delivery-time prediction, and data-driven operational investigation.
