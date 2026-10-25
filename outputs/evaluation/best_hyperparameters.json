@@ -1,0 +1,22 @@
+{
+    "best_hyperparameters": {
+        "n_estimators": 200,
+        "min_samples_split": 6,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "max_depth": 10
+    },
+    "best_hyperparameters_raw": {
+        "regressor__n_estimators": 200,
+        "regressor__min_samples_split": 6,
+        "regressor__min_samples_leaf": 1,
+        "regressor__max_features": "sqrt",
+        "regressor__max_depth": 10
+    },
+    "best_cross_validation_rmse_minutes": 7.3209,
+    "scoring_method": "neg_root_mean_squared_error",
+    "cross_validation_folds": 5,
+    "randomized_search_iterations": 12,
+    "total_cross_validation_fits": 60,
+    "random_state": 42
+}

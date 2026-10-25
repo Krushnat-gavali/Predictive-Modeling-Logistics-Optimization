@@ -1,0 +1,4 @@
+model_name,mae_minutes,rmse_minutes,r2_score,training_time_seconds,model_path
+Random Forest Regressor,5.85853185776466,7.469301429448932,0.3636901293131274,2.09712660004152,C:\Predictive_Logistics_Optimization\models\random_forest_regressor_pipeline.joblib
+Linear Regression,6.355854208336965,8.051323587085117,0.2606616207588598,0.12270140001783147,C:\Predictive_Logistics_Optimization\models\linear_regression_pipeline.joblib
+Dummy Regressor (Mean Baseline),7.579004587782955,9.363725943211962,-1.3992208637070291e-05,0.12064879998797551,C:\Predictive_Logistics_Optimization\models\dummy_regressor_mean_baseline_pipeline.joblib

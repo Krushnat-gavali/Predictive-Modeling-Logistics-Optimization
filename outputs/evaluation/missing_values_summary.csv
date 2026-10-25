@@ -1,0 +1,14 @@
+Column,Missing_Count,Missing_Percentage,Non_Missing_Count
+delivery_distance_km,3640,7.983681705524972,41953
+Delivery_person_Ratings,53,0.11624591494308337,45540
+Delivery_person_Age,38,0.0833461276950409,45555
+Delivery_location_latitude,0,0.0,45593
+Delivery_location_longitude,0,0.0,45593
+Delivery_person_ID,0,0.0,45593
+ID,0,0.0,45593
+Restaurant_latitude,0,0.0,45593
+Restaurant_longitude,0,0.0,45593
+Time_taken(min),0,0.0,45593
+Type_of_order,0,0.0,45593
+Type_of_vehicle,0,0.0,45593
+is_geo_valid,0,0.0,45593

@@ -1,0 +1,9 @@
+Check,Description,Flagged_Count,Percentage_Of_Rows
+Exact duplicate rows,Rows identical across every column.,0,0.0
+Repeated non-missing IDs,Repeated identifier values; these are not automatically treated as duplicate orders.,142,0.31145131928146863
+Age outside review range,Age values below 18 or above 100.,0,0.0
+Ratings outside 0 to 5,Numeric ratings outside the expected 0-to-5 range.,0,0.0
+Non-positive delivery times,Delivery-time values that are zero or negative.,0,0.0
+Restaurant coordinates both zero,Restaurant latitude and longitude are both zero.,3640,7.983681705524972
+Delivery coordinates both zero,Delivery latitude and longitude are both zero.,0,0.0
+All four coordinates zero,All restaurant and delivery coordinate values are zero.,0,0.0

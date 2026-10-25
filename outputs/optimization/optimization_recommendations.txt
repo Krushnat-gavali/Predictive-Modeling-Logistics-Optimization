@@ -1,0 +1,47 @@
+LOGISTICS DELIVERY-TIME OPTIMIZATION ANALYSIS
+==========================================================
+
+Generated (UTC): 2026-10-25T18:03:20.692470+00:00
+
+1. ANALYSIS SCOPE
+----------------------------------------------------------
+This report summarizes model-based distance scenarios and feature-sensitivity probes using the tuned delivery-time model.
+Evaluation records are a reproducible sample from the available engineered dataset. The sample is capped at the configured maximum when the dataset is larger.
+
+2. GEOGRAPHIC ELIGIBILITY
+----------------------------------------------------------
+Total evaluation records: 5000
+Eligible records: 4580
+Ineligible records: 420
+Eligibility requires a finite positive distance and an explicit valid geographic-coordinate flag.
+
+3. DISTANCE SCENARIO RESULTS
+----------------------------------------------------------
+Distance reduction 5%: 4580 eligible records; baseline mean prediction 26.423 minutes; scenario mean prediction 26.179 minutes; predicted mean change -0.244 minutes.
+Distance reduction 10%: 4580 eligible records; baseline mean prediction 26.423 minutes; scenario mean prediction 25.971 minutes; predicted mean change -0.452 minutes.
+Distance reduction 15%: 4580 eligible records; baseline mean prediction 26.423 minutes; scenario mean prediction 25.822 minutes; predicted mean change -0.601 minutes.
+
+These values describe predictions under hypothetical changes to straight-line geographic distance. They do not establish causation, guaranteed delivery-time reductions, financial savings, or proven operational improvements.
+
+4. FEATURE SENSITIVITY ANALYSIS
+----------------------------------------------------------
+Sensitivity probes generated: 15
+The analysis examines model response at observed percentiles while other predictors, including one-hot categorical columns, remain unchanged.
+These probes are not causal experiments or realistic operational interventions.
+
+5. INTERPRETATION AND LIMITATIONS
+----------------------------------------------------------
+- delivery_distance_km represents straight-line geographic distance, not verified road-network distance.
+- Model predictions are estimates and are not guaranteed outcomes.
+- The available dataset does not directly establish effects from traffic, weather, food preparation, or other unobserved factors.
+- Courier age and ratings are analyzed only for model sensitivity. Changing either is not recommended as an optimization action.
+- The results should not be interpreted as causal effects, financial savings, or proof of operational improvements.
+
+6. CHART ARTIFACT STATUS
+----------------------------------------------------------
+predicted_delivery_time_scenarios: status=substantive_analytical; placeholder=False; image_verified=True.
+feature_sensitivity_analysis: status=substantive_analytical; placeholder=False; image_verified=True.
+
+7. APPROPRIATE NEXT STEPS
+----------------------------------------------------------
+Treat the scenario results as exploratory model diagnostics. Any operational use would require suitable road-network distances, relevant operational measurements, prospective validation, and evaluation against observed outcomes.

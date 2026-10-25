@@ -1,0 +1,167 @@
+{
+    "project_name": "Predictive Modeling and Optimization in Logistics Systems Using Python",
+    "module_name": "src/feature_engineering.py",
+    "generation_timestamp_utc": "2026-10-25T18:00:34.533180+00:00",
+    "input_dataset_path": "C:\\Predictive_Logistics_Optimization\\data\\processed\\cleaned_delivery_data.csv",
+    "output_dataset_path": "C:\\Predictive_Logistics_Optimization\\data\\processed\\feature_engineered_delivery_data.csv",
+    "summary_json_path": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\feature_engineering_summary.json",
+    "original_row_count": 45593,
+    "original_column_count": 13,
+    "final_row_count": 45593,
+    "final_column_count": 14,
+    "rows_removed_due_to_invalid_target": 0,
+    "duplicate_rows_in_original_dataset": 0,
+    "target_variable": "Time_taken(min)",
+    "target_units": "minutes",
+    "predictor_feature_names": [
+        "Delivery_person_Age",
+        "Delivery_person_Ratings",
+        "is_geo_valid",
+        "delivery_distance_km",
+        "log1p_delivery_distance_km",
+        "Type_of_order__Buffet",
+        "Type_of_order__Drinks",
+        "Type_of_order__Meal",
+        "Type_of_order__Snack",
+        "Type_of_vehicle__bicycle",
+        "Type_of_vehicle__electric_scooter",
+        "Type_of_vehicle__motorcycle",
+        "Type_of_vehicle__scooter"
+    ],
+    "numeric_feature_names": [
+        "Delivery_person_Age",
+        "Delivery_person_Ratings",
+        "is_geo_valid",
+        "delivery_distance_km",
+        "log1p_delivery_distance_km"
+    ],
+    "one_hot_encoded_feature_names": [
+        "Type_of_order__Buffet",
+        "Type_of_order__Drinks",
+        "Type_of_order__Meal",
+        "Type_of_order__Snack",
+        "Type_of_vehicle__bicycle",
+        "Type_of_vehicle__electric_scooter",
+        "Type_of_vehicle__motorcycle",
+        "Type_of_vehicle__scooter"
+    ],
+    "categorical_feature_audit": {
+        "Type_of_order": {
+            "categories": [
+                "Buffet",
+                "Drinks",
+                "Meal",
+                "Snack"
+            ],
+            "missing_count": 0,
+            "generated_columns": [
+                "Type_of_order__Buffet",
+                "Type_of_order__Drinks",
+                "Type_of_order__Meal",
+                "Type_of_order__Snack"
+            ]
+        },
+        "Type_of_vehicle": {
+            "categories": [
+                "bicycle",
+                "electric_scooter",
+                "motorcycle",
+                "scooter"
+            ],
+            "missing_count": 0,
+            "generated_columns": [
+                "Type_of_vehicle__bicycle",
+                "Type_of_vehicle__electric_scooter",
+                "Type_of_vehicle__motorcycle",
+                "Type_of_vehicle__scooter"
+            ]
+        }
+    },
+    "excluded_identifier_columns": [
+        "ID",
+        "Delivery_person_ID"
+    ],
+    "excluded_raw_coordinate_columns": [
+        "Restaurant_latitude",
+        "Restaurant_longitude",
+        "Delivery_location_latitude",
+        "Delivery_location_longitude"
+    ],
+    "missing_values_per_final_column": {
+        "Delivery_person_Age": 38,
+        "Delivery_person_Ratings": 53,
+        "is_geo_valid": 0,
+        "delivery_distance_km": 3640,
+        "log1p_delivery_distance_km": 3640,
+        "Type_of_order__Buffet": 0,
+        "Type_of_order__Drinks": 0,
+        "Type_of_order__Meal": 0,
+        "Type_of_order__Snack": 0,
+        "Type_of_vehicle__bicycle": 0,
+        "Type_of_vehicle__electric_scooter": 0,
+        "Type_of_vehicle__motorcycle": 0,
+        "Type_of_vehicle__scooter": 0,
+        "Time_taken(min)": 0
+    },
+    "geographic_audit": {
+        "distance_calculation_method": "existing_distance_reused",
+        "valid_distance_count": 41953,
+        "missing_or_invalid_distance_count": 3640,
+        "valid_coordinates_count": 41953,
+        "invalid_coordinates_count": 3640,
+        "is_geo_valid_true_count": 41953,
+        "is_geo_valid_false_count": 3640,
+        "existing_geo_flag_present": true,
+        "distance_note": "Haversine is straight-line distance, not road distance. If an existing distance is reused, its provenance depends on the preprocessing stage."
+    },
+    "numeric_feature_audit": {
+        "Delivery_person_Age": {
+            "missing_count": 38,
+            "anomalies_outside_range": 0,
+            "audit_range": [
+                18.0,
+                100.0
+            ]
+        },
+        "Delivery_person_Ratings": {
+            "missing_count": 53,
+            "anomalies_outside_range": 0,
+            "audit_range": [
+                1.0,
+                5.0
+            ]
+        }
+    },
+    "validation_count_executed": 18,
+    "validation_status": "EXACTLY_18_VALIDATIONS_PASSED",
+    "validation_check_details": [
+        "Check 1 passed: target exists.",
+        "Check 2 passed: target has no missing values.",
+        "Check 3 passed: target is finite.",
+        "Check 4 passed: target is positive.",
+        "Check 5 passed: row count matches target filtering.",
+        "Check 6 passed: ID excluded.",
+        "Check 7 passed: Delivery_person_ID excluded.",
+        "Check 8 passed: raw coordinates excluded.",
+        "Check 9 passed: distance exists and is numeric.",
+        "Check 10 passed: available distances are finite and non-negative.",
+        "Check 11 passed: geo flag contains integer 0/1.",
+        "Check 12 passed: log-distance feature exists and is numeric.",
+        "Check 13 passed: log transform and missingness are consistent.",
+        "Check 14 passed: all predictors are numeric.",
+        "Check 15 passed: dummy features contain integer 0/1.",
+        "Check 16 passed: target excluded from predictors.",
+        "Check 17 passed: target is the final column.",
+        "Check 18 passed: schema matches predictor list."
+    ],
+    "target_leakage_prevention": {
+        "target_excluded_from_predictors": true,
+        "target_placement": "final_column",
+        "leakage_verification": "CONFIRMED_CLEAN"
+    },
+    "data_limitations_and_domain_notes": [
+        "The target is food delivery time in minutes.",
+        "Haversine distance is straight-line distance, not actual road-network distance.",
+        "The source dataset does not directly provide measured traffic congestion, weather conditions, dispatch delays, or shipping costs."
+    ]
+}

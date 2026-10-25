@@ -1,0 +1,181 @@
+========================================================================
+FOOD DELIVERY TIME PREDICTION
+EXPLORATORY DATA ANALYSIS REPORT
+========================================================================
+
+PROJECT
+Predictive Modeling and Optimization in Logistics Systems Using Python
+
+INPUT DATASET
+C:\Predictive_Logistics_Optimization\data\processed\cleaned_delivery_data.csv
+
+========================================================================
+1. DATASET OVERVIEW
+========================================================================
+Total Rows: 45593.0
+Total Columns: 13.0
+Total Cells: 592709.0
+Missing Cells: 3731.0
+Missing Cells Percentage: 0.6294825960125457
+Exact Duplicate Rows: 0.0
+Unique Column Names: 13.0
+Memory Usage (MB): 12.762726783752441
+
+========================================================================
+2. MISSING-VALUE ANALYSIS
+========================================================================
+delivery_distance_km: 3,640 missing (7.98%).
+Delivery_person_Ratings: 53 missing (0.12%).
+Delivery_person_Age: 38 missing (0.08%).
+
+========================================================================
+3. DELIVERY-TIME SUMMARY
+========================================================================
+Valid observations: 45,593
+Mean (minutes): 26.29
+Median (minutes): 26.00
+Standard deviation (minutes): 9.38
+Minimum (minutes): 10.00
+Maximum (minutes): 54.00
+Interquartile range (minutes): 13.00
+
+========================================================================
+4. NUMERIC DESCRIPTIVE STATISTICS
+========================================================================
+Delivery_person_Age
+  Count: 45,555
+  Mean: 29.56
+  Median: 29.00
+  Minimum: 20.00
+  Maximum: 50.00
+Delivery_person_Ratings
+  Count: 45,540
+  Mean: 4.63
+  Median: 4.70
+  Minimum: 1.00
+  Maximum: 5.00
+Restaurant_latitude
+  Count: 45,593
+  Mean: 17.02
+  Median: 18.55
+  Minimum: -30.91
+  Maximum: 30.91
+Restaurant_longitude
+  Count: 45,593
+  Mean: 70.23
+  Median: 75.90
+  Minimum: -88.37
+  Maximum: 88.43
+Delivery_location_latitude
+  Count: 45,593
+  Mean: 17.47
+  Median: 18.63
+  Minimum: 0.01
+  Maximum: 31.05
+Delivery_location_longitude
+  Count: 45,593
+  Mean: 70.85
+  Median: 76.00
+  Minimum: 0.01
+  Maximum: 88.56
+Time_taken(min)
+  Count: 45,593
+  Mean: 26.29
+  Median: 26.00
+  Minimum: 10.00
+  Maximum: 54.00
+delivery_distance_km
+  Count: 41,953
+  Mean: 107.06
+  Median: 9.22
+  Minimum: 1.47
+  Maximum: 19,692.67
+
+========================================================================
+5. CATEGORICAL FREQUENCIES
+========================================================================
+Type_of_order: 4 unique non-missing values
+  Snack: 11,533 (25.30%)
+  Meal: 11,458 (25.13%)
+  Drinks: 11,322 (24.83%)
+  Buffet: 11,280 (24.74%)
+Type_of_vehicle: 4 unique non-missing values
+  motorcycle: 26,435 (57.98%)
+  scooter: 15,276 (33.51%)
+  electric_scooter: 3,814 (8.37%)
+  bicycle: 68 (0.15%)
+
+========================================================================
+6. CORRELATION WITH DELIVERY TIME
+========================================================================
+Delivery_person_Ratings: -0.3335
+Delivery_person_Age: 0.2935
+Delivery_location_latitude: 0.0142
+Restaurant_latitude: 0.0140
+Restaurant_longitude: 0.0078
+Delivery_location_longitude: 0.0076
+delivery_distance_km: -0.0029
+Note: Pearson correlation measures linear association, not causation.
+
+========================================================================
+7. POTENTIAL STATISTICAL OUTLIERS
+========================================================================
+Delivery_location_longitude: 6,516 flagged (14.29%).
+Delivery_person_Ratings: 5,292 flagged (11.62%).
+Restaurant_longitude: 4,655 flagged (10.21%).
+delivery_distance_km: 431 flagged (1.03%).
+Restaurant_latitude: 431 flagged (0.95%).
+Time_taken(min): 270 flagged (0.59%).
+Delivery_person_Age: 53 flagged (0.12%).
+IQR flags identify unusual values, not necessarily incorrect data.
+No rows were removed during outlier analysis.
+
+========================================================================
+8. DOMAIN-SPECIFIC DATA QUALITY CHECKS
+========================================================================
+Exact duplicate rows: 0 flagged (0.00%).
+  Rows identical across every column.
+Repeated non-missing IDs: 142 flagged (0.31%).
+  Repeated identifier values; these are not automatically treated as duplicate orders.
+Age outside review range: 0 flagged (0.00%).
+  Age values below 18 or above 100.
+Ratings outside 0 to 5: 0 flagged (0.00%).
+  Numeric ratings outside the expected 0-to-5 range.
+Non-positive delivery times: 0 flagged (0.00%).
+  Delivery-time values that are zero or negative.
+Restaurant coordinates both zero: 3,640 flagged (7.98%).
+  Restaurant latitude and longitude are both zero.
+Delivery coordinates both zero: 0 flagged (0.00%).
+  Delivery latitude and longitude are both zero.
+All four coordinates zero: 0 flagged (0.00%).
+  All restaurant and delivery coordinate values are zero.
+
+========================================================================
+9. GENERATED OUTPUTS
+========================================================================
+C:\Predictive_Logistics_Optimization\outputs\evaluation\dataset_overview.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\column_information.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\missing_values_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\numeric_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\categorical_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\delivery_time_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\correlation_matrix.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\target_correlation_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\outlier_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\domain_anomaly_summary.csv
+C:\Predictive_Logistics_Optimization\outputs\evaluation\eda_report.txt
+C:\Predictive_Logistics_Optimization\outputs\evaluation\exploratory_analysis.log
+
+========================================================================
+10. LIMITATIONS
+========================================================================
+- The report describes the supplied dataset.
+- Correlation does not establish causation.
+- Statistical outliers are not automatically data errors.
+- Coordinate checks identify records for review only.
+- This script does not train or evaluate prediction models.
+- The cleaned dataset is not modified by this script.
+
+========================================================================
+END OF REPORT
+========================================================================

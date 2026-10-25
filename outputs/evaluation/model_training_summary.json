@@ -1,0 +1,89 @@
+{
+  "project_name": "Predictive Modeling and Optimization in Logistics Systems Using Python",
+  "module_name": "src/train_models.py",
+  "training_timestamp_utc": "2026-10-25T18:03:41.093396+00:00",
+  "input_dataset_path": "C:\\Predictive_Logistics_Optimization\\data\\processed\\feature_engineered_delivery_data.csv",
+  "target_variable": "Time_taken(min)",
+  "target_units": "minutes",
+  "random_seed": 42,
+  "test_split_fraction": 0.2,
+  "dataset_dimensions": {
+    "original_row_count": 45593,
+    "original_column_count": 14,
+    "removed_invalid_target_rows": 0,
+    "usable_row_count": 45593,
+    "training_row_count": 36474,
+    "testing_row_count": 9119,
+    "predictor_feature_count": 13
+  },
+  "features_used": [
+    "Delivery_person_Age",
+    "Delivery_person_Ratings",
+    "is_geo_valid",
+    "delivery_distance_km",
+    "log1p_delivery_distance_km",
+    "Type_of_order__Buffet",
+    "Type_of_order__Drinks",
+    "Type_of_order__Meal",
+    "Type_of_order__Snack",
+    "Type_of_vehicle__bicycle",
+    "Type_of_vehicle__electric_scooter",
+    "Type_of_vehicle__motorcycle",
+    "Type_of_vehicle__scooter"
+  ],
+  "excluded_columns": [],
+  "preprocessing": {
+    "numeric_missing_and_infinite_values": "Converted to missing values; median imputation fitted within each training pipeline.",
+    "scaling": "StandardScaler used in the Linear Regression pipeline only; fitted on training data.",
+    "train_test_split": "80/20 with random_state=42."
+  },
+  "model_selection_policy": "Select the model with the lowest unrounded RMSE on the held-out 20% test split. This is an initial comparison; repeated tuning should use cross-validation on training data.",
+  "best_model": {
+    "model_name": "Random Forest Regressor",
+    "selection_metric": "lowest_unrounded_test_rmse",
+    "test_rmse_minutes": 7.469301429448932,
+    "artifact_path": "C:\\Predictive_Logistics_Optimization\\models\\best_delivery_time_model.joblib"
+  },
+  "model_evaluations": [
+    {
+      "model_name": "Dummy Regressor (Mean Baseline)",
+      "mae_minutes": 7.579004587782955,
+      "rmse_minutes": 9.363725943211962,
+      "r2_score": -1.3992208637070291e-05,
+      "training_time_seconds": 0.12064879998797551,
+      "model_path": "C:\\Predictive_Logistics_Optimization\\models\\dummy_regressor_mean_baseline_pipeline.joblib"
+    },
+    {
+      "model_name": "Linear Regression",
+      "mae_minutes": 6.355854208336965,
+      "rmse_minutes": 8.051323587085117,
+      "r2_score": 0.2606616207588598,
+      "training_time_seconds": 0.12270140001783147,
+      "model_path": "C:\\Predictive_Logistics_Optimization\\models\\linear_regression_pipeline.joblib"
+    },
+    {
+      "model_name": "Random Forest Regressor",
+      "mae_minutes": 5.85853185776466,
+      "rmse_minutes": 7.469301429448932,
+      "r2_score": 0.3636901293131274,
+      "training_time_seconds": 2.09712660004152,
+      "model_path": "C:\\Predictive_Logistics_Optimization\\models\\random_forest_regressor_pipeline.joblib"
+    }
+  ],
+  "saved_artifacts": {
+    "comparison_csv": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\model_comparison.csv",
+    "predictions_csv": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\model_predictions.csv",
+    "best_model_joblib": "C:\\Predictive_Logistics_Optimization\\models\\best_delivery_time_model.joblib",
+    "individual_models": {
+      "Dummy Regressor (Mean Baseline)": "C:\\Predictive_Logistics_Optimization\\models\\dummy_regressor_mean_baseline_pipeline.joblib",
+      "Linear Regression": "C:\\Predictive_Logistics_Optimization\\models\\linear_regression_pipeline.joblib",
+      "Random Forest Regressor": "C:\\Predictive_Logistics_Optimization\\models\\random_forest_regressor_pipeline.joblib"
+    }
+  },
+  "data_limitations_and_domain_notes": [
+    "The input is the supplied Kaggle food-delivery dataset; its records are not described here as synthetic.",
+    "Geographic distance is a straight-line geodesic estimate, not road-network distance.",
+    "Real-time traffic, weather conditions, dispatch latency, and dynamic shipping costs are not available as measured fields in this dataset.",
+    "The held-out test metrics describe performance on this dataset and do not guarantee performance in other locations or future conditions."
+  ]
+}

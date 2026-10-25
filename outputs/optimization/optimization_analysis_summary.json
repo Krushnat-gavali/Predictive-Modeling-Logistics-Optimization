@@ -1,0 +1,263 @@
+{
+    "project_root": "C:\\Predictive_Logistics_Optimization",
+    "dataset_path": "C:\\Predictive_Logistics_Optimization\\data\\processed\\feature_engineered_delivery_data.csv",
+    "model_path": "C:\\Predictive_Logistics_Optimization\\models\\tuned_random_forest_delivery_model.joblib",
+    "generated_at_utc": "2026-10-25T18:03:20.695296+00:00",
+    "duration_seconds": 7.836317,
+    "target_column": "Time_taken(min)",
+    "predictor_columns": [
+        "Delivery_person_Age",
+        "Delivery_person_Ratings",
+        "is_geo_valid",
+        "delivery_distance_km",
+        "log1p_delivery_distance_km",
+        "Type_of_order__Buffet",
+        "Type_of_order__Drinks",
+        "Type_of_order__Meal",
+        "Type_of_order__Snack",
+        "Type_of_vehicle__bicycle",
+        "Type_of_vehicle__electric_scooter",
+        "Type_of_vehicle__motorcycle",
+        "Type_of_vehicle__scooter"
+    ],
+    "dataset_records_available": 45593,
+    "evaluation_sample_size": 5000,
+    "sample_selection": {
+        "method": "All records when dataset size is within the cap; otherwise random sampling without replacement.",
+        "maximum_sample_size": 5000,
+        "random_seed": 42,
+        "description": "A reproducible sample from the available dataset."
+    },
+    "sample_counts": {
+        "total_sample_records": 5000,
+        "eligible_records": 4580,
+        "ineligible_records": 420
+    },
+    "scenario_count": 3,
+    "scenario_results": [
+        {
+            "scenario": "Distance reduction 5%",
+            "distance_reduction_percent": 5,
+            "sample_size": 5000,
+            "eligible_records": 4580,
+            "ineligible_records": 420,
+            "baseline_mean_predicted_delivery_time_min": 26.422560771891764,
+            "scenario_mean_predicted_delivery_time_min": 26.178997623668547,
+            "mean_predicted_change_min": -0.24356314822321679,
+            "mean_predicted_change_percent": -0.9217999357667046,
+            "baseline_median_predicted_delivery_time_min": 26.116302019780413,
+            "scenario_median_predicted_delivery_time_min": 25.109384515448376,
+            "median_predicted_change_min": -1.006917504332037,
+            "minimum_predicted_change_min": -6.689086842990687,
+            "maximum_predicted_change_min": 5.413513782588129,
+            "interpretation": "Illustrative model sensitivity scenario only. Distance refers to straight-line geographic distance, not verified road-network distance. This estimate does not establish causation or guarantee an operational delivery-time reduction."
+        },
+        {
+            "scenario": "Distance reduction 10%",
+            "distance_reduction_percent": 10,
+            "sample_size": 5000,
+            "eligible_records": 4580,
+            "ineligible_records": 420,
+            "baseline_mean_predicted_delivery_time_min": 26.422560771891764,
+            "scenario_mean_predicted_delivery_time_min": 25.97080521460128,
+            "mean_predicted_change_min": -0.45175555729048256,
+            "mean_predicted_change_percent": -1.7097341971905262,
+            "baseline_median_predicted_delivery_time_min": 26.116302019780413,
+            "scenario_median_predicted_delivery_time_min": 24.490510665346424,
+            "median_predicted_change_min": -1.6257913544339893,
+            "minimum_predicted_change_min": -7.228648231548512,
+            "maximum_predicted_change_min": 5.413513782588129,
+            "interpretation": "Illustrative model sensitivity scenario only. Distance refers to straight-line geographic distance, not verified road-network distance. This estimate does not establish causation or guarantee an operational delivery-time reduction."
+        },
+        {
+            "scenario": "Distance reduction 15%",
+            "distance_reduction_percent": 15,
+            "sample_size": 5000,
+            "eligible_records": 4580,
+            "ineligible_records": 420,
+            "baseline_mean_predicted_delivery_time_min": 26.422560771891764,
+            "scenario_mean_predicted_delivery_time_min": 25.821711364835565,
+            "mean_predicted_change_min": -0.6008494070561987,
+            "mean_predicted_change_percent": -2.274001419632954,
+            "baseline_median_predicted_delivery_time_min": 26.116302019780413,
+            "scenario_median_predicted_delivery_time_min": 24.358601306610165,
+            "median_predicted_change_min": -1.757700713170248,
+            "minimum_predicted_change_min": -8.723356405949346,
+            "maximum_predicted_change_min": 5.477294268665226,
+            "interpretation": "Illustrative model sensitivity scenario only. Distance refers to straight-line geographic distance, not verified road-network distance. This estimate does not establish causation or guarantee an operational delivery-time reduction."
+        }
+    ],
+    "scenario_metadata": {
+        "total_sample_records": 5000,
+        "eligible_records": 4580,
+        "ineligible_records": 420,
+        "scenario_count": 3,
+        "substantive_scenario_results_available": true,
+        "scenario_note": "Scenario estimates describe the trained model's predictions under hypothetical changes to straight-line distance. They are not causal estimates, road-route simulations, guarantees, or measured operational outcomes."
+    },
+    "sensitivity_record_count": 15,
+    "sensitivity_metadata": {
+        "sensitivity_record_count": 15,
+        "features_requested": [
+            "delivery_distance_km",
+            "Delivery_person_Ratings",
+            "Delivery_person_Age"
+        ],
+        "features_analyzed": [
+            "delivery_distance_km",
+            "Delivery_person_Ratings",
+            "Delivery_person_Age"
+        ],
+        "feature_results": {
+            "delivery_distance_km": {
+                "status": "completed",
+                "result_count": 5,
+                "finite_observed_value_count": 4580,
+                "percentiles_tested": [
+                    {
+                        "label": "Minimum",
+                        "percentile": 0.0
+                    },
+                    {
+                        "label": "25th percentile",
+                        "percentile": 0.25
+                    },
+                    {
+                        "label": "Median",
+                        "percentile": 0.5
+                    },
+                    {
+                        "label": "75th percentile",
+                        "percentile": 0.75
+                    },
+                    {
+                        "label": "Maximum",
+                        "percentile": 1.0
+                    }
+                ],
+                "interpretation": "Model sensitivity analysis only; this is not a causal experiment or a realistic operational intervention. The tested value is applied to the sampled records while other predictor values, including one-hot categorical columns, remain unchanged. Distance is straight-line geographic distance, not verified road-network distance."
+            },
+            "Delivery_person_Ratings": {
+                "status": "completed",
+                "result_count": 5,
+                "finite_observed_value_count": 4994,
+                "percentiles_tested": [
+                    {
+                        "label": "Minimum",
+                        "percentile": 0.0
+                    },
+                    {
+                        "label": "25th percentile",
+                        "percentile": 0.25
+                    },
+                    {
+                        "label": "Median",
+                        "percentile": 0.5
+                    },
+                    {
+                        "label": "75th percentile",
+                        "percentile": 0.75
+                    },
+                    {
+                        "label": "Maximum",
+                        "percentile": 1.0
+                    }
+                ],
+                "interpretation": "Model sensitivity analysis only; this is not a causal experiment or a realistic operational intervention. The tested value is applied to the sampled records while other predictor values, including one-hot categorical columns, remain unchanged. This feature is examined only to understand model response. The analysis does not recommend changing courier age or ratings."
+            },
+            "Delivery_person_Age": {
+                "status": "completed",
+                "result_count": 5,
+                "finite_observed_value_count": 4998,
+                "percentiles_tested": [
+                    {
+                        "label": "Minimum",
+                        "percentile": 0.0
+                    },
+                    {
+                        "label": "25th percentile",
+                        "percentile": 0.25
+                    },
+                    {
+                        "label": "Median",
+                        "percentile": 0.5
+                    },
+                    {
+                        "label": "75th percentile",
+                        "percentile": 0.75
+                    },
+                    {
+                        "label": "Maximum",
+                        "percentile": 1.0
+                    }
+                ],
+                "interpretation": "Model sensitivity analysis only; this is not a causal experiment or a realistic operational intervention. The tested value is applied to the sampled records while other predictor values, including one-hot categorical columns, remain unchanged. This feature is examined only to understand model response. The analysis does not recommend changing courier age or ratings."
+            }
+        },
+        "analysis_type": "Model sensitivity analysis, not causal experiments or realistic interventions."
+    },
+    "substantive_scenario_results_available": true,
+    "substantive_sensitivity_results_available": true,
+    "chart_status": {
+        "predicted_delivery_time_scenarios": {
+            "path": "C:\\Predictive_Logistics_Optimization\\outputs\\optimization\\predicted_delivery_time_scenarios.png",
+            "status": "substantive_analytical",
+            "is_placeholder": false,
+            "image_verified": true,
+            "reason": "Plots baseline and scenario model predictions."
+        },
+        "feature_sensitivity_analysis": {
+            "path": "C:\\Predictive_Logistics_Optimization\\outputs\\optimization\\feature_sensitivity_analysis.png",
+            "status": "substantive_analytical",
+            "is_placeholder": false,
+            "image_verified": true,
+            "reason": "Plots changes in model predictions across observed feature percentiles."
+        }
+    },
+    "artifact_verification": {
+        "all_required_artifacts_exist": true,
+        "all_required_artifacts_nonempty": true,
+        "csv_headers_and_row_counts_verified": true,
+        "chart_image_decoding_verified": true,
+        "required_artifact_count": 7,
+        "artifacts": {
+            "optimization_scenario_summary.csv": {
+                "exists": true,
+                "size_bytes": 1754
+            },
+            "feature_sensitivity_analysis.csv": {
+                "exists": true,
+                "size_bytes": 9354
+            },
+            "optimization_recommendations.txt": {
+                "exists": true,
+                "size_bytes": 3233
+            },
+            "optimization_analysis_summary.json": {
+                "exists": true,
+                "size_bytes": 11650
+            },
+            "optimization_analysis.log": {
+                "exists": true,
+                "size_bytes": 2493
+            },
+            "predicted_delivery_time_scenarios.png": {
+                "exists": true,
+                "size_bytes": 71897
+            },
+            "feature_sensitivity_analysis.png": {
+                "exists": true,
+                "size_bytes": 189092
+            }
+        }
+    },
+    "scientific_limitations": [
+        "delivery_distance_km is straight-line geographic distance, not verified road-network distance.",
+        "Distance-reduction scenarios are hypothetical model probes and do not guarantee delivery-time reductions.",
+        "Sensitivity results are not causal estimates or realistic operational interventions.",
+        "Courier age and ratings are not recommended as operational optimization targets.",
+        "The available dataset does not directly establish effects from traffic, weather, or food preparation.",
+        "No financial savings or proven operational improvements are inferred from the model predictions."
+    ],
+    "analysis_status": "ARTIFACTS_VERIFIED_SUBSTANTIVE_RESULTS_AVAILABLE"
+}

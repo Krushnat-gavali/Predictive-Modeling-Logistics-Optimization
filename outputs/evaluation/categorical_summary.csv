@@ -1,0 +1,9 @@
+Column,Value,Count,Percentage,Unique_Values_In_Column
+Type_of_order,Snack,11533,25.295549755444913,4
+Type_of_order,Meal,11458,25.131050819204702,4
+Type_of_order,Drinks,11322,24.83275941482245,4
+Type_of_order,Buffet,11280,24.74064001052793,4
+Type_of_vehicle,motorcycle,26435,57.980391726800164,4
+Type_of_vehicle,scooter,15276,33.505143333406444,4
+Type_of_vehicle,electric_scooter,3814,8.365319237602263,4
+Type_of_vehicle,bicycle,68,0.14914570219112583,4

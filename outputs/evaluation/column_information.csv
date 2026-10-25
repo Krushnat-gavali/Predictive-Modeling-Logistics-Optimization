@@ -1,0 +1,14 @@
+Column,Data_Type,Non_Missing_Count,Missing_Count,Unique_Values
+ID,str,45593,0,45451
+Delivery_person_ID,str,45593,0,1320
+Delivery_person_Age,float64,45555,38,21
+Delivery_person_Ratings,float64,45540,53,27
+Restaurant_latitude,float64,45593,0,657
+Restaurant_longitude,float64,45593,0,518
+Delivery_location_latitude,float64,45593,0,4373
+Delivery_location_longitude,float64,45593,0,4373
+Type_of_order,str,45593,0,4
+Type_of_vehicle,str,45593,0,4
+Time_taken(min),int64,45593,0,45
+is_geo_valid,bool,45593,0,2
+delivery_distance_km,float64,41953,3640,4780

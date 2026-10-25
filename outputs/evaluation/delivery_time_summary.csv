@@ -1,0 +1,2 @@
+Target_Column,Total_Rows,Valid_Observations,Missing_Or_Invalid_Observations,Mean_Minutes,Median_Minutes,Standard_Deviation_Minutes,Minimum_Minutes,25th_Percentile_Minutes,75th_Percentile_Minutes,Maximum_Minutes,Range_Minutes,Interquartile_Range_Minutes,Skewness,Negative_Or_Zero_Times
+Time_taken(min),45593,45593,0,26.29460662821047,26.0,9.383806145163103,10.0,19.0,32.0,54.0,44.0,13.0,0.4859512298743323,0

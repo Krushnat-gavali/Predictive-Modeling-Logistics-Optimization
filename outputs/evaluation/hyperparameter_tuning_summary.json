@@ -1,0 +1,117 @@
+{
+    "utc_timestamp": "2026-10-25T18:02:55.521015+00:00",
+    "project_name": "Predictive Modeling and Optimization in Logistics Systems Using Python",
+    "module_name": "src/hyperparameter_tuning.py",
+    "input_dataset_path": "C:\\Predictive_Logistics_Optimization\\data\\processed\\feature_engineered_delivery_data.csv",
+    "target_column": "Time_taken(min)",
+    "target_units": "minutes",
+    "dataset_summary": {
+        "original_row_count": 45593,
+        "original_column_count": 14,
+        "invalid_target_rows_excluded": 0,
+        "retained_row_count": 45593,
+        "training_row_count": 36474,
+        "testing_row_count": 9119,
+        "predictor_feature_count": 13
+    },
+    "predictor_columns_used": [
+        "Delivery_person_Age",
+        "Delivery_person_Ratings",
+        "is_geo_valid",
+        "delivery_distance_km",
+        "log1p_delivery_distance_km",
+        "Type_of_order__Buffet",
+        "Type_of_order__Drinks",
+        "Type_of_order__Meal",
+        "Type_of_order__Snack",
+        "Type_of_vehicle__bicycle",
+        "Type_of_vehicle__electric_scooter",
+        "Type_of_vehicle__motorcycle",
+        "Type_of_vehicle__scooter"
+    ],
+    "excluded_identifier_and_coordinate_columns": [],
+    "entirely_missing_predictor_columns_dropped": [],
+    "tuning_configuration": {
+        "search_strategy": "RandomizedSearchCV",
+        "candidate_iterations": 12,
+        "cross_validation_folds": 5,
+        "total_cv_fits": 60,
+        "scoring_metric": "neg_root_mean_squared_error",
+        "parameter_distributions": {
+            "regressor__n_estimators": [
+                100,
+                150,
+                200,
+                250
+            ],
+            "regressor__max_depth": [
+                null,
+                10,
+                14,
+                16,
+                20,
+                24
+            ],
+            "regressor__min_samples_split": [
+                2,
+                4,
+                6,
+                8,
+                10
+            ],
+            "regressor__min_samples_leaf": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "regressor__max_features": [
+                1.0,
+                "sqrt",
+                0.8
+            ]
+        },
+        "random_state": 42,
+        "test_split_fraction": 0.2,
+        "elapsed_tuning_time_seconds": 106.44
+    },
+    "best_hyperparameters": {
+        "n_estimators": 200,
+        "min_samples_split": 6,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "max_depth": 10
+    },
+    "best_cross_validation_rmse_minutes": 7.3209,
+    "tuned_model_held_out_test_metrics": {
+        "mae_minutes": 5.7337,
+        "rmse_minutes": 7.2987,
+        "r2_score": 0.3924
+    },
+    "median_baseline_test_metrics": {
+        "training_median_value_minutes": 26.0,
+        "mae_minutes": 7.5494,
+        "rmse_minutes": 9.3675,
+        "r2_score": -0.0008
+    },
+    "reference_baseline_comparison": {
+        "reference_initial_rf_mae_minutes": 5.8585,
+        "reference_initial_rf_rmse_minutes": 7.4693,
+        "reference_initial_rf_r2": 0.3637
+    },
+    "output_artifact_paths": {
+        "tuned_model_joblib": "C:\\Predictive_Logistics_Optimization\\models\\tuned_random_forest_delivery_model.joblib",
+        "hyperparameter_tuning_results_csv": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\hyperparameter_tuning_results.csv",
+        "best_hyperparameters_json": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\best_hyperparameters.json",
+        "tuned_model_predictions_csv": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\tuned_model_predictions.csv",
+        "hyperparameter_tuning_summary_json": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\hyperparameter_tuning_summary.json",
+        "execution_log": "C:\\Predictive_Logistics_Optimization\\outputs\\evaluation\\hyperparameter_tuning.log"
+    },
+    "dataset_limitations": [
+        "Dataset represents historical delivery logs from the Kaggle food delivery dataset; it is empirical and not synthetic.",
+        "delivery_distance_km represents straight-line geodesic distance computed via the Haversine formula, not road driving distance.",
+        "Real-time traffic congestion, inclement weather conditions, kitchen preparation delays, and courier dispatch wait times are not captured as measured features.",
+        "Missing feature values are imputed using median values computed strictly within training folds to avoid data leakage.",
+        "Hyperparameter tuning was conducted strictly on training data folds without referencing the held-out test set."
+    ]
+}
